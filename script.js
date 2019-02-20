@@ -191,3 +191,85 @@ Person.prototype.myFriends6 = function(friends) {
 var friends = ['Bobby', 'Jennifer', 'Marky-Mark'];
 
 new Person('Fields').myFriends6(friends);
+
+/**
+ * Concepts: Destructuring
+ */
+
+//ES5
+var john = ['John', 26];
+// var name = john[0];
+// var age = john[1];
+
+//ES6
+const [name, age] = ['John', 26];
+console.log(name);
+console.log(age);
+
+const object = {
+  firstN: 'John',
+  lastN: 'Smith'
+};
+
+const { firstN, lastN } = object;
+console.log(`${firstN} ${lastN}`);
+
+const { firstN: a, lastN: b } = object;
+console.log(`${a} ${b}`);
+
+function calcAgeRetirement(year) {
+  const age = new Date().getFullYear() - year;
+  return [age, 65 - age];
+}
+
+const [yearsOld, retirement] = calcAgeRetirement(1990);
+console.log(yearsOld);
+console.log(retirement);
+
+/**
+ * Concepts: Arrays and Loops
+ */
+
+const boxes = document.querySelectorAll('.box');
+
+// // ES5
+var boxesArray5 = Array.prototype.slice.call(boxes);
+// boxesArr5.forEach(function(element) {
+//   element.style.backgroundColor = 'dodgerblue';
+// });
+
+const boxesArray6 = Array.from(boxes);
+boxesArray6.forEach(element => (element.style.backgroundColor = 'orangered'));
+
+//ES5
+/*
+for (let i = 0; i < boxesArray5.length; i++) {
+  const element = boxesArray5[i];
+  if (element.className === 'box blue') {
+    continue;
+  }
+  element.textContent = 'I am red now too !';
+}
+*/
+
+//ES6
+for (const iterator of boxesArray6) {
+  if (iterator.className.includes('blue')) {
+    continue;
+  }
+  iterator.textContent = 'I am red now too !';
+}
+
+//ES5
+var ages = [12, 17, 9, 21, 11, 19];
+
+var full = ages.map(function(element) {
+  return element >= 18;
+});
+
+console.log(full.indexOf(true));
+console.log(ages[full.indexOf(true)]);
+
+//ES6
+console.log(ages.findIndex(element => element >= 18));
+console.log(ages.find(element => element >= 18));
