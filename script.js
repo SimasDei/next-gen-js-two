@@ -42,3 +42,41 @@ for (let i = 0; i < 5; i++) {
 }
 
 console.log(i); // 23
+
+/**
+ * Concepts: Blocks and IIFEs
+ */
+
+{
+  const a = 1;
+  let be = 2;
+  var c = 3;
+}
+
+// console.log(a + b);  // a = undefined
+
+/**
+ * Concepts: Strings
+ */
+
+let firstName = 'John';
+let lastName = 'Smith';
+const yearOfBirth = '2000';
+function calcAge(year) {
+  return 2019 - year;
+}
+
+// ES5
+console.log(
+  'This is ' + firstName + ' ' + lastName + ' Age: ' + calcAge(yearOfBirth)
+);
+
+// ES6
+console.log(
+  `This is ${firstName} ${lastName} and he is ${calcAge(yearOfBirth)} years old`
+);
+
+const n = `${firstName} ${lastName}`;
+console.log(n.startsWith('J'));
+console.log(n.endsWith('h'));
+console.log(n.includes(' '));
