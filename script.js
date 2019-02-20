@@ -273,3 +273,75 @@ console.log(ages[full.indexOf(true)]);
 //ES6
 console.log(ages.findIndex(element => element >= 18));
 console.log(ages.find(element => element >= 18));
+
+/**
+ * Concepts: Spread operator
+ * expand array into it's components
+ */
+
+function addFourAges(a, b, c, d) {
+  return a + b + c + d;
+}
+var sum1 = addFourAges(12, 16, 21, 33);
+console.log(sum1);
+
+//ES5
+var ages = [12, 16, 21, 33];
+var sum2 = addFourAges.apply(null, ages);
+console.log(sum2);
+
+//ES6
+const sum3 = addFourAges(...ages);
+console.log(sum3);
+
+const familySmith = ['John', 'Jane', 'Mark'];
+const familyCobbler = ['Mary', 'Bobby', 'Jimbo'];
+
+const bigFamily = [...familySmith, 'The Black Sheep', ...familyCobbler];
+console.log(bigFamily);
+
+const h = document.querySelector('h1');
+const bx = document.querySelectorAll('.box');
+const cssEle = [h, ...bx];
+cssEle.forEach(element => {
+  element.style.color = 'purple';
+});
+
+/**
+ * Concept: Rest Parameters
+ */
+
+/*
+//ES5
+function isFullAge5() {
+  var argsArr = Array.prototype.slice.call(arguments);
+  argsArr.forEach(function(element) {
+    console.log(2019 - element >= 18);
+  });
+}
+// isFullAge5(1999, 2005, 1904);
+
+//ES6
+function isFullAge6(...years) {
+  years.forEach(element => {
+    console.log(2019 - element >= 18);
+  });
+}
+isFullAge6(1999, 2005, 1904, 2001, 2003);
+*/
+//ES5
+function isFullAge5(limit) {
+  var argsArr = Array.prototype.slice.call(arguments, 1);
+  argsArr.forEach(function(element) {
+    console.log(2019 - element >= 18);
+  });
+}
+// isFullAge5(1999, 2005, 1904);
+
+//ES6
+function isFullAge6(limit, ...years) {
+  years.forEach(element => {
+    console.log(2019 - element >= limit);
+  });
+}
+isFullAge6(16, 1999, 2005, 1904, 2001, 2003);
