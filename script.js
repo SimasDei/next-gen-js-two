@@ -345,3 +345,73 @@ function isFullAge6(limit, ...years) {
   });
 }
 isFullAge6(16, 1999, 2005, 1904, 2001, 2003);
+
+/**
+ * Concept: Default Parameters
+ */
+
+//ES5
+function SmithPerson(firstName, yearOfBirth, lastName, nationality) {
+  lastName === undefined ? (lastName = 'Smith') : lastName;
+  nationality === undefined ? (nationality = 'Space Wizard') : nationality;
+
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.yearOfBirth = yearOfBirth;
+  this.nationality = nationality;
+}
+
+var chungus = new SmithPerson('Chungus', 1990);
+var evie = new SmithPerson('Evie', 1999, 'Gonzalez', 'Mexican');
+
+//ES6
+function CobblestonePerson(
+  firstName,
+  yearOfBirth,
+  lastName = 'Cobblestone',
+  nationality = 'MAGA'
+) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.yearOfBirth = yearOfBirth;
+  this.nationality = nationality;
+}
+
+const fred = new CobblestonePerson('Fred', 1987);
+
+/**
+ * Concept: Maps
+ */
+
+const question = new Map();
+question.set('question', 'What is the origin story of Pyjamas ? ');
+question.set(1, '...What?');
+question.set(2, 'Excuse Me?');
+question.set(3, "I'm leaving.");
+question.set('correct', 3);
+question.set(true, 'Correct answer');
+question.set(false, 'Not a Winrar.');
+
+console.log(question.get('question'));
+
+if (question.has(1)) {
+  question.delete(1);
+}
+
+console.log(question.size);
+
+// question.clear();
+
+question.forEach((element, index) => {
+  // console.log(element + ' ' + index);
+});
+
+for (const [key, value] of question.entries()) {
+  if (typeof key === 'number') {
+    console.log(`index: ${key} value: ${value}`);
+  }
+}
+
+const answer = parseInt(prompt('Write the correct answer'));
+
+console.log(answer === question.get('correct'));
